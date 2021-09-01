@@ -17,4 +17,4 @@ sorted_price = sorted(price_list, reverse=True)
 print(sorted_price)
 
 print("D)")
-print(sorted(price_list, reverse=True)[:5])
+print(sorted(price_list[len(price_list) - 5:]))
