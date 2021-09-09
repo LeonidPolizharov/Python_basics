@@ -1,12 +1,13 @@
 import requests
 from datetime import datetime
+from decimal import Decimal
 
 inp_val = input('Введите код валюты для получения текущего курса: ')
+addr = 'http://www.cbr.ru/scripts/XML_daily.asp'
 
 
-def currency_rates(inp_arg):
-    from decimal import Decimal
-    cbr_request = requests.get('http://www.cbr.ru/scripts/XML_daily.asp')
+def currency_rates(inp_arg, adr):
+    cbr_request = requests.get(adr)
     encode = requests.utils.get_encoding_from_headers(cbr_request.headers)
     cbr_content = cbr_request.content.decode(encoding=encode)
     parsed_cont = cbr_content.replace('>', ' ').replace('<', ' ').split()
@@ -33,7 +34,7 @@ def currency_rates(inp_arg):
     return Decimal(rate), nom, date
 
 
-if currency_rates(inp_val) is not None:
-    print(f'Курс на дату {currency_rates(inp_val)[2]}: {currency_rates(inp_val)[1]} {inp_val.upper()} = {currency_rates(inp_val)[0]} RUB')
+if currency_rates(inp_val, addr) is not None:
+    print(f'Курс на дату {currency_rates(inp_val, addr)[2]}: {currency_rates(inp_val, addr)[1]} {inp_val.upper()} = {currency_rates(inp_val, addr)[0]} RUB')
 else:
     print('Некорректный ввод!')
