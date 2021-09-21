@@ -7,9 +7,8 @@ def type_logger(my_func):
     @wraps(my_func)
     def my_logger(*args):
         nonlocal log_class
-        num = args
         for i in args:
-            log_class[i] = type(i)
+            log_class[i] = (type(i), my_func(i), type(my_func(i)))
         return log_class
 
     return my_logger
