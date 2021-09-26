@@ -1,15 +1,17 @@
 class Road:
-    _length = 0
-    _width = 0
+    def __init__(self, length=0, width=0):
+        self._length = length
+        self._width = width
 
-    def __init__(self, _length, _width):
+    def calculate(self):
         try:
-            calc = (float(_length) * float(_width) * 25 * 5) / 1000
+            calc = (float(self._length) * float(self._width) * 25 * 5) / 1000
             print(f'{calc} тонн')
 
-        except:
+        except ValueError:
             msg = 'Некорректный ввод!'
             raise ValueError(msg)
 
 
 a = Road(20, 5000)
+a.calculate()

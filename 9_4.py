@@ -2,92 +2,76 @@ import random
 
 
 class Car:
-    speed = 0
-    color = ''
-    name = ''
-    is_police = False
+    def __init__(self, name='', color='', speed=0, is_police=None):
+        self.name = name
+        self.color = color
+        self.speed = int(speed)
+        self.is_police = is_police
 
     def go(self):
-        print(f'Машина {Car.name} поехала')
+        print(f'Машина {self.name} поехала')
 
     def stop(self):
-        print(f'Машина {Car.name} остановилась')
+        print(f'Машина {self.name} остановилась')
 
     def turn(self):
         direction = ('влево', 'вправо', 'назад')
-        d = random.choice(direction)
-        print(f'Машина {Car.name} повернула {d}')
+        direct = random.choice(direction)
+        print(f'Машина {self.name} повернула {direct}')
 
     def show_speed(self):
-        print(f'Скорость  {Car.name} - {Car.speed} км/ч')
+        print(f'Скорость  {self.name} - {self.speed} км/ч')
 
 
 class TownCar(Car):
-    def __init__(self, name, color, speed):
-        Car.name = name
-        Car.color = color
-        Car.speed = int(speed)
-        Car.is_police = False
+    is_police = False
 
     def show_speed(self):
-        if Car.speed > 60:
-            print(f'Скорость {Car.name} - {Car.speed} км/ч. Превышение!')
+        if self.speed > 60:
+            print(f'Скорость {self.name} - {self.speed} км/ч. Превышение!')
         else:
-            print(f'Скорость {Car.name} - {Car.speed} км/ч')
+            print(f'Скорость {self.name} - {self.speed} км/ч')
 
 
 class SportCar(Car):
-    def __init__(self, name, color, speed):
-        Car.name = name
-        Car.color = color
-        Car.speed = speed
-        Car.is_police = False
+    is_police = False
 
 
 class WorkCar(Car):
-    def __init__(self, name, color, speed):
-        Car.name = name
-        Car.color = color
-        Car.speed = int(speed)
-        Car.is_police = False
+    is_police = False
 
     def show_speed(self):
-        if Car.speed > 40:
-            print(f'Скорость {Car.name} - {Car.speed} км/ч. Превышение!')
+        if self.speed > 40:
+            print(f'Скорость {self.name} - {self.speed} км/ч. Превышение!')
         else:
-            print(f'Скорость {Car.name} - {Car.speed} км/ч')
+            print(f'Скорость {self.name} - {self.speed} км/ч')
 
 
 class PoliceCar(Car):
-    def __init__(self, name, color, speed):
-        Car.name = name
-        Car.color = color
-        Car.speed = speed
-        Car.is_police = True
+    Car.is_police = True
 
 
-a = TownCar('Volkswagen', 'зеленый', '80')
+a = TownCar('Volkswagen', 'зеленый', 80, False)
 a.go()
 a.show_speed()
 a.turn()
 a.stop()
 
 
-b = SportCar('Lamborghini', 'красный', '160')
+b = SportCar('Lamborghini', 'красный', 160, False)
 b.go()
 b.show_speed()
 b.turn()
 b.stop()
 
-c = WorkCar('Lada', 'черный', '60')
+c = WorkCar('Lada', 'черный', 60, False)
 c.go()
 c.show_speed()
 c.turn()
 c.stop()
 
-d = PoliceCar('Ford', 'синий', '80')
+d = PoliceCar('Ford', 'синий', 80, True)
 d.go()
 d.show_speed()
 d.turn()
 d.stop()
-
