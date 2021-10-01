@@ -3,7 +3,6 @@ class Cell:
         self.cells = int(cells)
 
     def __add__(self, other):
-        Cell(self.cells + other.cells)
         return Cell(self.cells + other.cells)
 
     def __sub__(self, other):
