@@ -3,6 +3,7 @@ class Cell:
         self.cells = int(cells)
 
     def __add__(self, other):
+        Cell(self.cells + other.cells)
         return Cell(self.cells + other.cells)
 
     def __sub__(self, other):
@@ -13,11 +14,10 @@ class Cell:
             return Cell(self.cells - other.cells)
 
     def __mul__(self, other):
-        self.cells = self.cells * other.cells
-        return self.cells
+        return Cell(self.cells * other.cells)
 
     def __floordiv__(self, other):
-        return Cell(self.cells * other.cells)
+        return Cell(self.cells // other.cells)
 
     def make_order(self, row):
         block = self.cells // row
@@ -34,4 +34,4 @@ b = Cell(12)
 b.make_order(5)
 
 
-print(b - a - b)
+print(a // b)
